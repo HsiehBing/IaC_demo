@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "role" {
-  name               = "bingec2-admin"
+  name               = "${var.project_name}-ec2-admin"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -25,8 +25,8 @@ data "aws_iam_policy_document" "policy" {
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "bing-ec2-admin"
-  description = "bing-ec2-admin"
+  name        = "${var.project_name}-ec2-admin"
+  description = "${var.project_name}-ec2-admin"
   policy      = data.aws_iam_policy_document.policy.json
 }
 

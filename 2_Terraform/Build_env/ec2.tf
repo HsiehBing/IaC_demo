@@ -15,9 +15,9 @@ data "aws_ami" "ubuntu" {
 }
 
 locals {
-  name   = "Bing-bastion"
-  region = "ap-northeast"
-  azs    = "ap-northeast-1a"
+  name   = var.project_name
+  region = var.region
+  azs    = var.az
 
   user_data = <<-EOT
     #!/bin/bash
@@ -58,7 +58,7 @@ module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 4.0"
 
-  name        = "bing-terraform-sg"
+  name        = "${var.project_name}-sg"
   description = "Security group for example usage with EC2 instance"
   vpc_id      = aws_vpc.main.id
 
@@ -68,7 +68,7 @@ module "security_group" {
 
 }
 resource "aws_iam_instance_profile" "profile" {
-  name = "bingec2-admin-profile"
+  name = "${var.project_name}-profile"
   role = aws_iam_role.role.name
 }
 
@@ -85,7 +85,7 @@ module "ec2" {
   vpc_security_group_ids      = [module.security_group.security_group_id]
   associate_public_ip_address = true
   iam_instance_profile        = aws_iam_instance_profile.profile.name
-  key_name                    = "bing-nl-person"
+  key_name                    = "${var.project_name}-key"
   metadata_options = {
     http_tokens = "required"
   }

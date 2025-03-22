@@ -4,6 +4,15 @@ variable "project_name" {
   default = "bing-project" # 可以是 public 或其他環境名稱
 }
 
+variable "region" {
+  type    = string
+  default = "ap-northeast-1"
+}
+
+variable "az" {
+  type    = string
+  default = "ap-northeast-1a"
+}
 #============================= VPC =============================
 
 variable "vpc_cidr" {
