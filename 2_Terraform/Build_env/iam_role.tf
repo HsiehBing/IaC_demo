@@ -6,7 +6,6 @@ data "aws_iam_policy_document" "assume_role" {
       type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
     }
-
     actions = ["sts:AssumeRole"]
   }
 }

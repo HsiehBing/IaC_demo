@@ -1,7 +1,7 @@
 # Project name
 variable "project_name" {
   type    = string
-  default = "bing-project" # 可以是 public 或其他環境名稱
+  default = "bing" # 使用者名稱
 }
 
 variable "region" {
@@ -20,10 +20,6 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
-variable "vpc_name" {
-  type    = string
-  default = "bing-vpc-terraform"
-}
 
 locals {
   default_route_table_name = "${var.project_name}-default-route-table"

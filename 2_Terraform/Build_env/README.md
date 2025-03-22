@@ -18,7 +18,7 @@ $ sudo yum -y install terraform
 
 - 賦予```backend.sh```執行權限
 ```shell
-- chmod +x ./2_Terraform/Build_env/backend.sh
+-  chmod +x create_backend.sh destroy_backend.sh 
 ```
 - 將 名稱、日期、以及Region依序輸入
 ```

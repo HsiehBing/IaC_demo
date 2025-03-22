@@ -35,6 +35,7 @@ fi
 echo -e "${YELLOW}警告: 此操作將刪除以下資源:${NC}"
 echo "- S3 Bucket: ${BUCKET_NAME} (包含所有內容)"
 echo "- DynamoDB Table: ${TABLE_NAME}"
+echo "- EC2 Key: ${USERNAME}-key"
 echo "- 區域: ${REGION}"
 echo
 read -p "確定要繼續刪除這些資源嗎? (y/n): " CONFIRM
@@ -152,6 +153,14 @@ if aws dynamodb describe-table --table-name "${TABLE_NAME}" --region "${REGION}"
 else
     echo -e "${YELLOW}DynamoDB Table ${TABLE_NAME} 不存在，跳過刪除步驟${NC}"
 fi
+
+# 3.刪除ec2 key 
+echo "正在刪除 ec2 key"
+aws ec2 delete-key-pair \
+  --key-name "${USERNAME}-key" \
+  --region "${REGION}" && echo -e "${GREEN}ec2 key 已成功刪除${NC}"  || error_exit "建立EC2 Key 發生錯誤" 
+
+
 
 echo -e "\n${GREEN}清理操作已完成${NC}"
 echo "如果有任何資源無法自動刪除，請登入 AWS 管理主控台手動檢查和刪除。"

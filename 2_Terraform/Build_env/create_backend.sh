@@ -104,10 +104,19 @@ if aws dynamodb describe-table --table-name "${TABLE_NAME}" 2>&1 | grep -q 'Reso
     echo -e "${GREEN}DynamoDB table 建立完成${NC}"
 fi
 
+# 建立ec2 key 
+echo "建立ec2 key "
+aws ec2 create-key-pair \
+  --key-name "${USERNAME}-key" \
+  --region "${REGION}" \
+  --output text && echo -e "${GREEN}ec2 key 建立完成${NC}" || error_exit "建立EC2 Key 發生錯誤" 
+
+
 echo -e "${GREEN}後端基礎設施建立完成!${NC}"
 echo "S3 Bucket: ${BUCKET_NAME}"
 echo "DynamoDB Table: ${TABLE_NAME}"
 echo "Region: ${REGION}"
+echo "EC2 key ${USERNAME}-key"
 
 # 顯示如何在 Terraform 中使用這些資源
 echo -e "\n在 Terraform 中使用這些資源的配置範例："
