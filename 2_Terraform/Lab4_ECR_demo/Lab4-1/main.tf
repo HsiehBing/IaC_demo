@@ -17,14 +17,14 @@ terraform {
   }
   backend "s3" {
     bucket         = "bing-terraform-backend-202533532893"
-    key            = "terraform.tfstate"
+    key            = "emr/terraform.tfstate"
     region         = "ap-northeast-1"
     dynamodb_table = "terraform-state"
   }
 }
 
 # =========== ECR ===========
-resource "aws_ecr_repository" "this" {
+resource "aws_ecr_repository" "ecr_1" {
   name                 = "bing-1"
   image_tag_mutability = "IMMUTABLE"
 
@@ -37,8 +37,8 @@ resource "aws_ecr_repository" "this" {
 
 resource "aws_ecr_lifecycle_policy" "example" {
   repository = "bing-1"
-
-  policy = <<EOF
+  depends_on = [aws_ecr_repository.ecr_1]
+  policy     = <<EOF
 {
     "rules": [
         {

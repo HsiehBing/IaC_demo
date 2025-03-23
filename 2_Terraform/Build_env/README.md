@@ -1,3 +1,7 @@
+# 設定terraform 環境
+- 建議在Cloudshell中進行實作
+- 若使用default起來的環境容量僅有1G，需要改用root權限，因此需要先建立user的Access Key 以及 Secret Key
+
 # 在Cloudshell安裝terraform
 
 Install ```yum-config-manager``` to manage your repositories.
