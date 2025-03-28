@@ -25,11 +25,10 @@ terraform {
 
   #========================== backend ==========================
   backend "s3" {
-    bucket         = "demo-terraform-state-711387099690"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "demo-terraform-locks"
-    encrypt        = true
+    bucket         = "bing-terraform-backend-202533532893"
+    key            = "emr/terraform.tfstate"
+    region         = "ap-northeast-1"
+    dynamodb_table = "terraform-state"
   }
 }
 # ========================== modules ==========================
