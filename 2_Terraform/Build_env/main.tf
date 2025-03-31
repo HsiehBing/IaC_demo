@@ -4,6 +4,7 @@ provider "aws" {
   default_tags {
     tags = {
       createby = "terraform"
+      JRID     = "PS2408025"
     }
   }
 }
@@ -22,8 +23,6 @@ terraform {
     dynamodb_table = "terraform-state"
   }
 }
-
-
 
 ###########################################
 # VPC

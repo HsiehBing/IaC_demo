@@ -43,6 +43,10 @@ variable "public_subnets" {
       cidr_block        = "10.0.2.0/24"
       availability_zone = "ap-northeast-1c"
     }
+    "subnet3" = {
+      cidr_block        = "10.0.3.0/24"
+      availability_zone = "ap-northeast-1c"
+    }
   }
 }
 
