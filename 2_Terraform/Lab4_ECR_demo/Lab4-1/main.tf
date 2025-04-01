@@ -24,7 +24,7 @@ terraform {
 }
 
 # =========== ECR ===========
-resource "aws_ecr_repository" "ecr_2" {
+resource "aws_ecr_repository" "ecr_1" {
   name                 = "bing-lab-1-1"
   image_tag_mutability = "IMMUTABLE"
 
@@ -73,7 +73,7 @@ resource "aws_ecr_repository" "ecr_2" {
 
 resource "aws_ecr_lifecycle_policy" "example_2" {
   repository = "bing-lab-1-2"
-  depends_on = [aws_ecr_repository.ecr_1]
+  depends_on = [aws_ecr_repository.ecr_2]
   policy     = <<EOF
 {
     "rules": [
